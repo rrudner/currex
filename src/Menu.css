@@ -1,7 +1,7 @@
 .sidemenu {
     text-align: center;
     height: 100%;
-    width: 160px;
+    width: 10%;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -11,10 +11,16 @@
     border-radius: 0em;
     border: 0px;
     color: white;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.sidemenu::-webkit-scrollbar {
+    display: none;
 }
 
 .sidemenu-button {
-    width: 150px;
+    width: 90%;
     height: 50px;
     border: none;
     outline: none;
