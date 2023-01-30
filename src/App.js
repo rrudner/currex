@@ -1,7 +1,7 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { useState, useEffect } from 'react';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 import './App.css';
 import './Menu.css';
 
@@ -37,7 +37,7 @@ function App() {
       .then(res => res.json())
       .then(data => setCurrenciesList(data[0].rates))
       .catch(err => console.log(err));
-  })
+  }, [])
 
 
   const chartData = data.map(rate => ({
@@ -87,6 +87,7 @@ function App() {
         selectedCurrency = data;
         const currinfo = ReactDOM.createRoot(document.getElementById('currinfo'));
         const element = <div>
+          <h1>1 {data.code} = {data.rates[0].mid} PLN</h1>
           <h2>{data.currency.toUpperCase()}</h2>
           <div id="calculator">
             <p id="currencyParagraph"><input type="number" id="currency" name="currency" value="1" onChange={e => currencyChange(e.target.value)} />
@@ -114,17 +115,20 @@ function App() {
       <div className="bg bg2"></div>
       <div className="bg bg3"></div>
       <div id="content" className="content">
-        <h1>Kalkulator walutowy Currex</h1>
-        <div id="currinfo">Wybierz walutę z menu po lewej stronie, aby poznać kurs</div>
+
+        <div id="currinfo">
+          <h1>Kalkulator walutowy Currex</h1>
+          Wybierz walutę z menu po lewej stronie, aby poznać kurs
+        </div>
         { }
         {data.length > 0 &&
-          <ResponsiveContainer width="100%" height={200}>
+          <ResponsiveContainer width="90%" height={200}>
 
             <LineChart width={500} height={300} data={chartData}>
               <XAxis dataKey="name" tick={false} />
               <YAxis domain={['dataMin', 'dataMax']} tick={false} />
               <Tooltip content={<CustomTooltip />} />
-              <Line type="monotone" dataKey="PLN" stroke="rgb(200, 50, 50)" strokeWidth={3} />
+              <Line type="monotone" dataKey="PLN" stroke="rgb(200, 50, 50)" strokeWidth={3} dot={false} />
             </LineChart>
           </ResponsiveContainer>
         }

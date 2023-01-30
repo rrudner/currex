@@ -61,14 +61,17 @@ a {
 
 h1 {
   font-size: 3vw;
+  margin: 0.5vw;
 }
 
 h2 {
   font-size: 1.5vw;
+  margin: 0.5vw;
 }
 
 h3 {
   font-size: 1vw;
+  margin: 0.5vw;
 }
 
 @keyframes slide {
